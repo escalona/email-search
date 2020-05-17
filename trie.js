@@ -17,9 +17,9 @@ class Node {
 
   toJSON() {
     return {
-      key: this.key,
-      path: [...this.path],
-      children: this.children
+      k: this.key,
+      p: [...this.path],
+      c: this.children
     };
   }
 
@@ -54,14 +54,17 @@ class Node {
     let node = root;
     const letters = word.split('');
 
-    for (const ch of letters) {
+    letters.forEach((ch, i) => {
       if (!node.children[ch]) {
         node.children[ch] = new Node(ch);
       }
 
       node = node.children[ch];
-      node.path.add(path);
-    }
+
+      if (i === letters.length - 1) {
+        node.path.add(path);
+      }
+    });
   }
 
   /**
