@@ -5,6 +5,7 @@ const Trie = require('../trie');
 const trie = new Trie();
 const outputPath = path.join(__dirname, '../data/search-index.json');
 
+/** Generate search index from emails in data/skilling-j directory */
 async function generateIndex() {
   console.log('Generating index...');
   try {
