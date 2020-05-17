@@ -20,9 +20,7 @@ function search(word, trie) {
 
 function handleSearchInput(e) {
   var val = e.target.value;
-  console.log(val);
   const output = search(val, window.__STATE__);
-  console.log(output);
   renderResults(output);
 }
 

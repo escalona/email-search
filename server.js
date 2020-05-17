@@ -7,7 +7,9 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 app.set('view engine', 'hbs');
-app.use('/client', express.static(path.resolve(__dirname, 'client')));
+
+app.use(express.static('dist'));
+app.use('/public', express.static(path.resolve(__dirname, 'public')));
 
 // server rendered home page
 app.get('/', async (req, res) => {
