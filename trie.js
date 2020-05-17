@@ -2,22 +2,21 @@ const Promise = require('bluebird');
 const fs = require('fs');
 const path = require('path');
 const walkDirectory = require('./walk-directory');
+const trieTest = require('./trie-test');
 
 const dataDirectory = 'data';
 Promise.promisifyAll(require('fs'));
 
-class Node {
-  constructor(key) {
-    this.key = key;
+class Trie {
+  constructor() {
     this.path = new Set();
 
-    /** @type {Object<string, Node>} */
+    /** @type {Object<string, Trie>} */
     this.children = {};
   }
 
   toJSON() {
     return {
-      k: this.key,
       p: [...this.path],
       c: this.children
     };
@@ -46,7 +45,7 @@ class Node {
 
   /**
    *
-   * @param {Node} root
+   * @param {Trie} root
    * @param {string} word
    * @param {string} path
    */
@@ -56,7 +55,7 @@ class Node {
 
     letters.forEach((ch, i) => {
       if (!node.children[ch]) {
-        node.children[ch] = new Node(ch);
+        node.children[ch] = new Trie(ch);
       }
 
       node = node.children[ch];
@@ -70,28 +69,12 @@ class Node {
   /**
    *
    * @param {string} word
-   * @param {Node} trie
+   * @param {Trie} trie
    * @return {string[]} paths
    */
   test(word, trie) {
-    let node = trie;
-    let output = [];
-    const letters = word.split('');
-
-    for (let i = 0; i < letters.length; i++) {
-      if (node.children[letters[i]]) {
-        node = node.children[letters[i]];
-      } else {
-        return output;
-      }
-
-      if (i === letters.length - 1) {
-        output = [...output, ...node.path];
-      }
-    }
-
-    return output;
+    return trieTest(word, trie);
   }
 }
 
-module.exports = Node;
+module.exports = Trie;

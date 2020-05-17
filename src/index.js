@@ -1,21 +1,7 @@
+const trieTest = require('../trie-test');
+
 function search(word, trie) {
-  var node = trie;
-  var output = [];
-  var letters = word.split('');
-
-  for (var i = 0; i < letters.length; i++) {
-    if (node.c[letters[i]]) {
-      node = node.c[letters[i]];
-    } else {
-      return output;
-    }
-
-    if (i === letters.length - 1) {
-      output = [...output, ...node.p];
-    }
-  }
-
-  return output;
+  return trieTest(word, trie);
 }
 
 function handleSearchInput(e) {
