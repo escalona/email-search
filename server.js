@@ -11,7 +11,7 @@ app.use(express.static('dist'));
 app.use('/public', express.static(path.resolve(__dirname, 'public')));
 
 app.get('/', async (req, res) => {
-  res.render('index', { initialState: JSON.stringify(JSON.parse(fs.readFileSync(path.join(__dirname, 'data/search-index.json'), 'utf8'))) });
+  res.render('index', { initialState: fs.readFileSync(path.join(__dirname, 'data/search-index.json'), 'utf8') });
 });
 
 app.listen(port, () => console.log(`Example app listening on port: ${port}`));
