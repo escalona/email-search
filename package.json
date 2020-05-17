@@ -2,8 +2,11 @@
   "name": "email-search",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "private": true,
+  "engines": {
+    "node": "12.13.1"
+  },
   "scripts": {
     "dev:client": "webpack-dev-server --config webpack.dev.js",
     "dev:server": "nodemon server.js",

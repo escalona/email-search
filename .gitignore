@@ -16,6 +16,8 @@ web/build
 
 npm-debug.log*
 
+data/skilling-j
+
 # Intellij
 .idea/
 *.iml
