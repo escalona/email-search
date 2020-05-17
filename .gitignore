@@ -1,0 +1,22 @@
+# dependencies
+node_modules
+.pnp
+.pnp.js
+
+# testing
+coverage
+
+# production
+dist
+web/build
+
+# misc
+.DS_Store
+.env
+
+npm-debug.log*
+
+# Intellij
+.idea/
+*.iml
+*.iws
